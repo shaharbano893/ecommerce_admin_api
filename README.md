@@ -37,10 +37,6 @@ This is a backend REST API built with **FastAPI** and **SQLModel**, designed to 
 
 ---
 
-Here's the updated section of your `README.md` that incorporates the use of environment variables for database credentials:
-
----
-
 ### 🧱 Setup Instructions
 
 #### 1. Clone the Repository
@@ -104,10 +100,6 @@ fastapi dev
 
 ## 📘 API Endpoints
 
-Here is the updated **Sales Endpoints** section for your `README.md`, reflecting the actual endpoints including the optional filters and avoiding confusion with the previous duplicate route:
-
----
-
 ### 🔸 Sales Endpoints
 
 | Method | Endpoint                 | Description                                                                |
@@ -139,10 +131,6 @@ Here is the updated **Sales Endpoints** section for your `README.md`, reflecting
 | GET    | `/products/{product_id}` | Retrieve a single product by ID |
 | PUT    | `/products/{product_id}` | Update a product by ID          |
 | DELETE | `/products/{product_id}` | Delete a product by ID          |
-
----
-
-Here’s the **updated Database Schema section** for your `README.md` based on your latest `SQLModel` definitions:
 
 ---
 
