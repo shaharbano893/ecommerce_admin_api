@@ -73,4 +73,4 @@ def insert_sample_data():
 if __name__ == "__main__":
     print("Inserting sample data...")
     insert_sample_data()
-    print("✅ Sample data inserted successfully.")
+    print("Sample data inserted successfully.")

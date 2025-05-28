@@ -133,6 +133,169 @@ fastapi dev
 | DELETE | `/products/{product_id}` | Delete a product by ID          |
 
 ---
+# 📡 GraphQL API (Strawberry)
+
+The **GraphQL** layer of the E-commerce Admin API is built using **Strawberry** and exposes flexible endpoints for interacting with products, sales, and inventory.
+
+---
+
+## 🔗 Endpoint
+
+```
+POST /graphql
+```
+
+GraphQL Playground:
+
+```
+http://localhost:8000/graphql
+```
+
+---
+
+## 🧾 Schema Overview
+
+### 🟩 Types
+
+#### `ProductType`
+
+```graphql
+type ProductType {
+  id: Int!
+  name: String!
+  stock: Int!
+  category: String
+  price: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sales: [SaleType]
+  inventoryLogs: [InventoryLogType]
+}
+```
+
+#### `SaleType`
+
+```graphql
+type SaleType {
+  id: Int!
+  productId: Int
+  quantity: Int!
+  mediumOfSales: String!
+  totalPrice: Float
+  createdAt: DateTime!
+}
+```
+
+#### `InventoryLogType`
+
+```graphql
+type InventoryLogType {
+  id: Int!
+  productId: Int!
+  previousStock: Int!
+  newStock: Int!
+  createdAt: DateTime!
+}
+```
+
+---
+
+### 📝 Inputs
+
+#### `CreateProductInput`
+
+```graphql
+input CreateProductInput {
+  name: String!
+  stock: Int!
+  category: String
+  price: Float
+}
+```
+
+---
+
+## 📥 Mutations
+
+### `createProduct`
+
+Create a new product.
+
+```graphql
+mutation {
+  createProduct(createProduct: {
+    name: "Wireless Mouse",
+    stock: 100,
+    category: "Electronics",
+    price: 25.99
+  }) {
+    id
+    name
+    stock
+    category
+    price
+    createdAt
+    updatedAt
+  }
+}
+```
+
+---
+
+## 📤 Queries
+
+### `getProduct`
+
+Retrieve a product by ID.
+
+```graphql
+query {
+  getProduct(productId: 1) {
+    id
+    name
+    stock
+    category
+    price
+    createdAt
+    updatedAt
+    sales {
+      id
+      quantity
+      mediumOfSales
+      totalPrice
+      createdAt
+    }
+    inventoryLogs {
+      id
+      previousStock
+      newStock
+      createdAt
+    }
+  }
+}
+```
+
+---
+
+## 🧪 Example Response
+
+```json
+{
+  "data": {
+    "createProduct": {
+      "id": 5,
+      "name": "Wireless Mouse",
+      "stock": 100,
+      "category": "Electronics",
+      "price": 25.99,
+      "createdAt": "2025-05-28T14:22:31.123Z",
+      "updatedAt": "2025-05-28T14:22:31.123Z"
+    }
+  }
+}
+```
+
+---
 
 ## 🗂 Database Schema
 

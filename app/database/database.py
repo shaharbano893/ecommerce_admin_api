@@ -26,10 +26,10 @@ def get_session():
 def create_db_and_tables():
     print("Creating database tables...")
     SQLModel.metadata.create_all(engine)
-    print("✅ Database tables created.")
+    print(" Database tables created.")
 
 def recreate_db():
-    print("❌ Dropping all tables...")
+    print(" Dropping all tables...")
     SQLModel.metadata.drop_all(engine)
-    print("✅ Creating all tables...")
+    print("Creating all tables...")
     SQLModel.metadata.create_all(engine) 

@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from strawberry.fastapi import GraphQLRouter
 from app.database.database import create_db_and_tables
 from app.routers import products, sales, inventory
+from app.graphql.query import graphql_schema
+
+
 
 app = FastAPI(
     title="E-commerce Admin API",
@@ -18,10 +22,13 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
+graphql_router = GraphQLRouter(graphql_schema)
 # Include routers
 app.include_router(products.router)
 app.include_router(sales.router)
 app.include_router(inventory.router)
+
+app.include_router(graphql_router, prefix="/graphql")
 
 @app.get("/")
 async def root():
